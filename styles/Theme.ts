@@ -1,3 +1,5 @@
-const theme = {}
+const theme = {
+  main: '#00E07E',
+};
 
-export default theme
+export default theme;
