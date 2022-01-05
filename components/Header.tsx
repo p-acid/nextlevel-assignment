@@ -1,8 +1,7 @@
-import React from 'react'
-import { NextComponentType } from 'next'
+import React from 'react';
 
-const Header: NextComponentType = props => {
-  return <div>header</div>
-}
+const Header: React.FC = props => {
+  return <div>header</div>;
+};
 
-export default Header
+export default Header;

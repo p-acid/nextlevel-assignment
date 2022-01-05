@@ -1,7 +1,12 @@
-import type { NextPage } from 'next'
+import type { NextPage } from 'next';
+import { getUserData } from '../lib/user';
 
 const Home: NextPage = () => {
-  return <div>Hello, World</div>
-}
+  return <div>Hello, World</div>;
+};
 
-export default Home
+Home.getInitialProps = async () => {
+  const res = getUserData();
+};
+
+export default Home;
