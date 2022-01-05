@@ -5,7 +5,7 @@ import { getUserData } from '../lib/user';
 
 import Header from './Header';
 
-const Layout: React.FC = () => {
+const Layout: React.FC = ({ children }) => {
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
@@ -17,6 +17,7 @@ const Layout: React.FC = () => {
   return (
     <Wrapper>
       <Header>{userName}</Header>
+      <Main>{children}</Main>
     </Wrapper>
   );
 };
@@ -24,3 +25,7 @@ const Layout: React.FC = () => {
 export default Layout;
 
 const Wrapper = styled.div``;
+
+const Main = styled.div`
+  margin-top: 3.75rem;
+`;
