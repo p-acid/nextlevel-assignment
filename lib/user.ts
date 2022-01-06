@@ -1,14 +1,14 @@
 import { URI } from '../config';
+import axios from 'axios';
 
 // about user function
 
-export function getUserData(token: string) {
-  const res = fetch(`${URI}/v1/me`, {
-    method: 'GET',
+export const submitUserData = (userData: object) => {
+  const res = axios.post(`${URI}/v1/auth/local`, userData, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      'content-type': 'application/json',
     },
-  }).then(res => res.json());
+  });
 
   return res;
-}
+};
