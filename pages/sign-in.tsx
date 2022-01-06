@@ -1,21 +1,21 @@
 import { NextPage } from 'next';
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useRouter } from 'next/router';
 
-import { URI } from '../config';
+import { submitUserData } from '../lib/user';
+import { Wrapper, SubWrapper, Logo, Title, Form, Button } from '../styles/Signin/SignInStyle';
 
-import InputBox from '../components/InputBox';
+import InputBox from '../components/InputBox/InputBox';
 
 const SignIn: NextPage = props => {
   const [userInfo, setUserInfo] = useState({
-    ID: '',
-    Password: '',
+    id: '',
+    password: '',
   });
 
   const router = useRouter();
 
-  const { ID, Password } = userInfo;
+  const { id, password } = userInfo;
 
   const handleUserInfo = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -27,30 +27,21 @@ const SignIn: NextPage = props => {
   };
 
   const userData = JSON.stringify({
-    identifier: ID,
-    password: Password,
+    identifier: id,
+    password: password,
   });
 
-  const submitData = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitData = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    fetch(`${URI}/v1/auth/local`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: userData,
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res.jwt) {
-          console.log(res.jwt);
-          console.log(localStorage);
-          router.push('/');
-        } else {
-          alert('아이디 비밀번호를 확인해주세요');
-        }
-      });
+    const res = await submitUserData(userData);
+
+    if (res.jwt) {
+      localStorage.setItem('token', res.jwt);
+      router.push('/');
+    } else {
+      alert('아이디 비밀번호를 확인해주세요');
+    }
   };
 
   return (
@@ -59,9 +50,9 @@ const SignIn: NextPage = props => {
         <Logo src="/images/typo_logo.png" alt="symbol_logo" />
         <Title>로그인</Title>
         <Form onSubmit={submitData}>
-          <InputBox data={DATA.id} value={ID} event={handleUserInfo} />
-          <InputBox data={DATA.pw} value={Password} event={handleUserInfo} />
-          <Button>로그인</Button>
+          <InputBox data={DATA.id} value={id} event={handleUserInfo} />
+          <InputBox data={DATA.pw} value={password} event={handleUserInfo} />
+          <Button disabled={(id + password).length === 0}>로그인</Button>
         </Form>
       </SubWrapper>
     </Wrapper>
@@ -74,40 +65,3 @@ const DATA = {
 };
 
 export default SignIn;
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
-`;
-
-const SubWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 375px;
-`;
-
-const Logo = styled.img`
-  padding-bottom: 1.5rem;
-`;
-
-const Title = styled.h2`
-  padding-bottom: 1.5rem;
-  font-family: NotoSansB;
-`;
-
-const Form = styled.form`
-  width: 100%;
-`;
-
-const Button = styled.button`
-  margin-top: 1.5rem;
-  padding: 0.75rem 0;
-  width: 100%;
-  border-radius: 4rem;
-  font-family: NotoSansB;
-  background-color: ${({ theme }) => theme.main};
-  cursor: pointer;
-`;
