@@ -1,9 +1,9 @@
 import { URI } from '../config';
 
-// about user function
+// about content function
 
-export function getContentsList() {
-  const res = fetch(`${URI}/v1/contents?isActive=true&_sort=createdAt&_limit=5`, {
+export function getContentsList(url: string) {
+  const res = fetch(url, {
     method: 'GET',
   }).then(res => res.json());
 

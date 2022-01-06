@@ -29,11 +29,9 @@ interface ListI {
 }
 
 const List: React.FC<ListI> = ({ contentList }) => {
-  const { data } = contentList;
-
   return (
     <Wrapper>
-      {data.map(item => {
+      {contentList?.data.map(item => {
         const {
           _id,
           images,
