@@ -33,6 +33,6 @@ export const Button = styled.button`
   width: 100%;
   border-radius: 4rem;
   font-family: NotoSansB;
-  background-color: ${({ theme }) => theme.main};
+  background-color: ${({ theme }) => theme.pr.main};
   cursor: ${({ disabled }) => !disabled && 'pointer'};
 `;

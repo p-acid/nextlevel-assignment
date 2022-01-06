@@ -12,16 +12,17 @@ import Layout from '../components/Layout';
 import PageBtns from '../components/PageBtns/PageBtns';
 
 const Home: NextPage = ({ userData }: any) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const { data, error } = useSWR(`${URI}/v1/contents?isActive=true&_start=2&_limit=5&_sort=createdAt`, getContentsList);
-
-  console.log(data);
+  const [currentStart, setCurrentStart] = useState(1);
+  const { data, error } = useSWR(
+    `${URI}/v1/contents?isActive=true&_start=${currentStart}&_limit=5&_sort=createdAt`,
+    getContentsList,
+  );
 
   return (
     <Layout>
       <Banner userData={userData} />
       <List contentList={data} />
-      <PageBtns totalPages={3} />
+      <PageBtns nextStart={data?.nextStart} totalPages={3} setCurrentStart={setCurrentStart} />
     </Layout>
   );
 };
