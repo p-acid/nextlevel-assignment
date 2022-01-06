@@ -26,10 +26,10 @@ const SignIn: NextPage = props => {
     }));
   };
 
-  const userData = JSON.stringify({
+  const userData = {
     identifier: id,
     password: password,
-  });
+  };
 
   const submitData = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
