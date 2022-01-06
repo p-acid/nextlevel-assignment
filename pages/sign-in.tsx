@@ -36,8 +36,8 @@ const SignIn: NextPage = props => {
 
     const res = await submitUserData(userData);
 
-    if (res.jwt) {
-      localStorage.setItem('token', res.jwt);
+    if (res.data.jwt) {
+      localStorage.setItem('token', res.data.jwt);
       router.push('/');
     } else {
       alert('아이디 비밀번호를 확인해주세요');

@@ -1,15 +1,14 @@
 import { URI } from '../config';
+import axios from 'axios';
 
 // about user function
 
 export const submitUserData = (userData: BodyInit) => {
-  const res = fetch(`${URI}/v1/auth/local`, {
-    method: 'POST',
+  const res = axios.post<any, { data: { jwt: string } }>(`${URI}/v1/auth/local`, userData, {
     headers: {
       'content-type': 'application/json',
     },
-    body: userData,
-  }).then(res => res.json());
+  });
 
   return res;
 };
