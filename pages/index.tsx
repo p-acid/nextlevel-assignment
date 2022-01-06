@@ -9,17 +9,19 @@ import { URI } from '../config';
 import List from '../components/List';
 import Banner from '../components/Banner';
 import Layout from '../components/Layout';
+import PageBtns from '../components/PageBtns/PageBtns';
 
 const Home: NextPage = ({ userData }: any) => {
-  const [currentPage, setCurrentPage] = useState();
-  const { data, error } = useSWR(`${URI}/v1/contents?isActive=true&_sort=createdAt&_limit=5`, getContentsList);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data, error } = useSWR(`${URI}/v1/contents?isActive=true&_start=2&_limit=5&_sort=createdAt`, getContentsList);
 
-  console.log(data, error);
+  console.log(data);
 
   return (
     <Layout>
       <Banner userData={userData} />
       <List contentList={data} />
+      <PageBtns totalPages={3} />
     </Layout>
   );
 };

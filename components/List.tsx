@@ -57,7 +57,7 @@ const List: React.FC<ListI> = ({ contentList }) => {
             <InfoBox>
               <Title href={`/content/${_id}`}>{title}</Title>
               <UserBox>
-                <UserImage src={profile.url} width={16} height={16} alt="profile_img" />
+                <UserImage src={profile?.url} width={16} height={16} alt="profile_img" />
                 <UserName>{username}</UserName>
               </UserBox>
               <SubInfoBox>
@@ -95,12 +95,12 @@ const ProductImg = styled.div<{ src: Array<{ url: string }> }>`
   min-height: 132px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
-  background: url(${({ src }) => src[0].url});
+  background: url(${({ src }) => src[0]?.url});
   background-size: cover;
   background-position: center;
 
   &:hover {
-    background: url(${({ src }) => src[1].url});
+    background: url(${({ src }) => src[1]?.url});
     background-size: cover;
     background-position: center;
   }

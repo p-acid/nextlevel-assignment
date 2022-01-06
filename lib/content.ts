@@ -1,5 +1,3 @@
-import { URI } from '../config';
-
 // about content function
 
 export function getContentsList(url: string) {
