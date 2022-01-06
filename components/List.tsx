@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
+import Link from 'next/link';
 
 interface ListI {
   contentList: {
@@ -29,7 +29,6 @@ interface ListI {
 }
 
 const List: React.FC<ListI> = ({ contentList }) => {
-  console.log(contentList);
   const { data } = contentList;
 
   return (
@@ -58,16 +57,16 @@ const List: React.FC<ListI> = ({ contentList }) => {
           <Item key={_id}>
             <ProductImg src={images} />
             <InfoBox>
-              <Title>{title}</Title>
+              <Title href={`/content/${_id}`}>{title}</Title>
               <UserBox>
                 <UserImage src={profile.url} width={16} height={16} alt="profile_img" />
                 <UserName>{username}</UserName>
               </UserBox>
               <SubInfoBox>
-                <Price>{lowestPrice} P</Price>
+                <Price>{lowestPrice.toLocaleString()} P</Price>
                 <div>
-                  <View>{view} 뷰</View>
-                  <Interest>{interest} 찜</Interest>
+                  <span>{view} 뷰</span>
+                  <span>{interest} 찜</span>
                 </div>
               </SubInfoBox>
             </InfoBox>
@@ -82,18 +81,22 @@ export default List;
 
 const Wrapper = styled.ul`
   margin: 0 auto;
+  padding-top: 25px;
   width: 570px;
 `;
 
 const Item = styled.li`
   display: flex;
   margin-bottom: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 8px;
 `;
 
 const ProductImg = styled.div<{ src: Array<{ url: string }> }>`
   min-width: 254px;
   min-height: 132px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   background: url(${({ src }) => src[0].url});
   background-size: cover;
   background-position: center;
@@ -107,27 +110,52 @@ const ProductImg = styled.div<{ src: Array<{ url: string }> }>`
 
 const InfoBox = styled.div`
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
-  gap: 13px;
   padding: 1rem;
+  width: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: white;
 `;
 
-const Title = styled.p``;
+const Title = styled(Link)`
+  font-size: 14px;
+  line-height: 142%;
+  letter-spacing: -0.025em;
+`;
 
-const UserBox = styled.div``;
+const UserBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+`;
 
 const UserImage = styled.img`
   border-radius: 50%;
 `;
 
-const UserName = styled.span``;
+const UserName = styled.span`
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 140%;
+`;
 
 const SubInfoBox = styled.div`
   display: flex;
+  justify-content: space-between;
+
+  & > div > span {
+    padding-left: 0.5rem;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 140%;
+    letter-spacing: -0.03em;
+  }
 `;
 
-const Price = styled.span``;
-
-const View = styled.span``;
-
-const Interest = styled.span``;
+const Price = styled.span`
+  font-size: 14px;
+  line-height: 142%;
+  letter-spacing: -0.025em;
+`;
