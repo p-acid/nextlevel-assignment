@@ -1,13 +1,14 @@
 import { NextPage } from 'next';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { setCookies } from 'cookies-next';
 
 import { submitUserData } from '../lib/user';
 import { Wrapper, SubWrapper, Logo, Title, Form, Button } from '../styles/Signin/SignInStyle';
 
 import InputBox from '../components/InputBox/InputBox';
 
-const SignIn: NextPage = props => {
+const SignIn: NextPage = () => {
   const [userInfo, setUserInfo] = useState({
     id: '',
     password: '',
@@ -37,7 +38,7 @@ const SignIn: NextPage = props => {
     const res = await submitUserData(userData);
 
     if (res.data.jwt) {
-      localStorage.setItem('token', res.data.jwt);
+      setCookies('token', res.data.jwt);
       router.push('/');
     } else {
       alert('아이디 비밀번호를 확인해주세요');

@@ -1,5 +1,6 @@
-import type { NextPage } from 'next';
+import type { NextPage, NextApiRequest, NextApiResponse } from 'next';
 import { useState } from 'react';
+import { getCookie } from 'cookies-next';
 import useSWR from 'swr';
 
 import { getUserData } from '../lib/user';
@@ -27,10 +28,12 @@ const Home: NextPage = ({ userData }: any) => {
   );
 };
 
-export const getStaticProps = async () => {
-  const userData = await getUserData(
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZjU1MGVhYTVhNzZhMDJkNTdiZjVhMCIsImlhdCI6MTY0MTI4NTgzMiwiZXhwIjoxNjQxODkwNjMyfQ.Tdz9WHbAgapHsIvi7ksovY3V_iqaaiGUKHcrrPGgvZA',
-  );
+export const getServerSideProps = async (props: any) => {
+  const { req, res } = props;
+
+  const cookie = getCookie('token', { req, res });
+
+  const userData = await getUserData(cookie);
 
   return { props: { userData: userData.data } };
 };

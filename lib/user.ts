@@ -1,9 +1,10 @@
 import { URI } from '../config';
 import axios from 'axios';
+import { CookieValueTypes } from 'cookies-next/lib/types';
 
 // about user function
 
-export function getUserData(token: string) {
+export function getUserData(token: CookieValueTypes) {
   const res = fetch(`${URI}/v1/me`, {
     method: 'GET',
     headers: {

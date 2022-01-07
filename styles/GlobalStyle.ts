@@ -29,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: NotoSansR;
+    font-family: NotoSansB;
   }
 
   input,
