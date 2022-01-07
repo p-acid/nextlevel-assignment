@@ -13,17 +13,22 @@ export const BtnBox = styled.div`
   box-shadow: 0px 12px 16px rgba(0, 0, 0, 0.48);
 `;
 
+export const NumBtnBox = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
 export const NextBtn = styled.svg`
   cursor: pointer;
 `;
 
-export const NumBtn = styled.button`
-  margin: 0 0.25rem;
+export const NumBtn = styled.button<{ isCurrentPage: boolean }>`
   padding: 0;
   font-size: 12px;
   line-height: 150%;
   letter-spacing: -0.025em;
-  color: rgba(0, 0, 0, 0.5);
+  color: ${({ isCurrentPage, theme }) => (isCurrentPage ? theme.pr.main : 'rgba(0, 0, 0, 0.5)')};
   background-color: white;
   cursor: pointer;
 `;

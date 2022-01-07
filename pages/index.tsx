@@ -13,7 +13,7 @@ import Layout from '../components/Layout/Layout';
 import PageBtns from '../components/PageBtns/PageBtns';
 
 const Main: NextPage = ({ userData }: any) => {
-  const [currentStart, setCurrentStart] = useState(1);
+  const [currentStart, setCurrentStart] = useState(0);
   const { data, error } = useSWR(
     `${URI}/v1/contents?isActive=true&_start=${currentStart}&_limit=5&_sort=createdAt `,
     getContentsList,
@@ -23,7 +23,12 @@ const Main: NextPage = ({ userData }: any) => {
     <Layout>
       <Banner userData={userData} />
       <List contentList={data} />
-      <PageBtns nextStart={data?.nextStart} totalPages={3} setCurrentStart={setCurrentStart} />
+      <PageBtns
+        nextStart={data?.nextStart}
+        totalPages={20}
+        currentStart={currentStart}
+        setCurrentStart={setCurrentStart}
+      />
     </Layout>
   );
 };
