@@ -1,16 +1,14 @@
-import { URI } from '../config';
 import axios from 'axios';
 import { CookieValueTypes } from 'cookies-next/lib/types';
 
-// about user function
+import { URI } from '../config';
 
 export function getUserData(token: CookieValueTypes) {
-  const res = fetch(`${URI}/v1/me`, {
-    method: 'GET',
+  const res = axios.get(`${URI}/v1/me`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  }).then(res => res.json());
+  });
 
   return res;
 }
