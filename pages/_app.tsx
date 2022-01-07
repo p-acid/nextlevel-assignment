@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 import GlobalStyle from '../styles/GlobalStyle';
 import Theme from '../styles/Theme';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

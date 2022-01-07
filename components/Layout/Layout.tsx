@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 
-import { getUserData } from '../lib/user';
+import { getUserData } from '../../lib/user';
 
-import Header from './Header';
+import Header from '../Header/Header';
+import { Wrapper, Main } from './LayoutStyle';
 
 const Layout: React.FC = ({ children }) => {
   const [userName, setUserName] = useState('');
@@ -23,9 +23,3 @@ const Layout: React.FC = ({ children }) => {
 };
 
 export default Layout;
-
-const Wrapper = styled.div``;
-
-const Main = styled.div`
-  margin-top: 3.75rem;
-`;
