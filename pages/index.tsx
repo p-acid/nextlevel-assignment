@@ -12,23 +12,24 @@ import Banner from '../components/Banner/Banner';
 import Layout from '../components/Layout/Layout';
 import PageBtns from '../components/PageBtns/PageBtns';
 
+const LIST_INFO = {
+  PRODUCTS_LIMIT: 5,
+  TOTAL_PAGES: 20,
+  PAGE_LIST_LIMIT: 5,
+};
+
 const Main: NextPage = ({ userData }: any) => {
   const [currentStart, setCurrentStart] = useState(0);
   const { data }: SWRResponse = useSWR(
-    `${URI}/v1/contents?isActive=true&_start=${currentStart}&_limit=5&_sort=createdAt `,
-    url => axios.get(url),
+    `${URI}/v1/contents?isActive=true&_start=${currentStart}&_limit=${LIST_INFO.PRODUCTS_LIMIT}&_sort=createdAt `,
+    (url: string) => axios.get(url).then(res => res.data),
   );
 
   return (
     <Layout>
       <Banner userData={userData} />
-      <List contentList={data.data} />
-      <PageBtns
-        nextStart={data?.nextStart}
-        totalPages={20}
-        currentStart={currentStart}
-        setCurrentStart={setCurrentStart}
-      />
+      <List contentList={data} />
+      <PageBtns listInfo={LIST_INFO} currentStart={currentStart} setCurrentStart={setCurrentStart} />
     </Layout>
   );
 };
@@ -40,7 +41,7 @@ export const getServerSideProps = async (props: any) => {
 
   const userData = await getUserData(cookie);
 
-  return { props: { userData: userData.data.data } };
+  return { props: { userData: userData.data } };
 };
 
 export default Main;

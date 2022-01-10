@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { getCookie } from 'cookies-next';
+import { useEffect, useState } from 'react';
 
 import { getUserData } from '../../lib/user';
 
@@ -7,11 +8,12 @@ import { Wrapper, Main } from './LayoutStyle';
 
 const Layout: React.FC = ({ children }) => {
   const [userName, setUserName] = useState('');
+  const token = getCookie('token');
 
   useEffect(() => {
-    getUserData(
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZjU1MGVhYTVhNzZhMDJkNTdiZjVhMCIsImlhdCI6MTY0MTI4NTgzMiwiZXhwIjoxNjQxODkwNjMyfQ.Tdz9WHbAgapHsIvi7ksovY3V_iqaaiGUKHcrrPGgvZA',
-    ).then(res => setUserName(res.data.username));
+    getUserData(token).then(res => {
+      setUserName(res.data.username);
+    });
   }, []);
 
   return (

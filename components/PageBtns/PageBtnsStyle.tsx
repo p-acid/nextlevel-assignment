@@ -19,7 +19,7 @@ export const NumBtnBox = styled.span`
   gap: 0.5rem;
 `;
 
-export const NextBtn = styled.svg`
+export const NextBtn = styled.img`
   cursor: pointer;
 `;
 

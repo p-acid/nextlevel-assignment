@@ -37,8 +37,8 @@ const SignIn: NextPage = () => {
 
     const res = await submitUserData(userData);
 
-    if (res.data.jwt) {
-      setCookies('token', res.data.jwt);
+    if (res.jwt) {
+      setCookies('token', res.jwt);
       router.push('/');
     } else {
       alert('아이디 비밀번호를 확인해주세요');
