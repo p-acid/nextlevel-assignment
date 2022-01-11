@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import { CookieValueTypes } from 'cookies-next/lib/types';
 
 import req from './core';

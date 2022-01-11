@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
 import { getCookie } from 'cookies-next';
 
 import { getListData, getUserData } from '../api/main';
@@ -9,6 +9,7 @@ import Banner from '../components/Banner/Banner';
 import Layout from '../components/Layout/Layout';
 import PageBtns from '../components/PageBtns/PageBtns';
 import { Loading } from '../components/Loading/Loading';
+import { AxiosResponse } from 'axios';
 
 const LIST_INFO = {
   PRODUCTS_LIMIT: 5,
@@ -22,10 +23,7 @@ const Main: NextPage = ({ userData }: any) => {
 
   useEffect(() => {
     getListData({ _limit: LIST_INFO.PRODUCTS_LIMIT, _sort: 'createdAt', isActive: true, _start: currentStart }).then(
-      res => {
-        const list: never[] = res.data;
-        setContentList([...list]);
-      },
+      (res: AxiosResponse) => setContentList((): any => [...res.data]),
     );
   }, [currentStart]);
 
