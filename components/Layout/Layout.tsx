@@ -14,7 +14,7 @@ const Layout: React.FC = ({ children }) => {
     getUserData(token).then(res => {
       setUserName(res.data.username);
     });
-  }, []);
+  }, [token]);
 
   return (
     <Wrapper>

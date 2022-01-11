@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { useState, useEffect, SetStateAction } from 'react';
+import { useState, useEffect } from 'react';
 import { getCookie } from 'cookies-next';
 
 import { getListData, getUserData } from '../api/main';
