@@ -1,23 +1,9 @@
 import React from 'react';
+
+import { BannerInterface } from '../../interface/interface';
 import { Wrapper, SubWrapper, Profile, UserName, TagBox, Tag, Discription, Email } from './BannerStyle';
 
-interface Url {
-  url: string;
-}
-
-interface BannerI {
-  userData: {
-    banner: Url;
-    profile: Url;
-    username: string;
-    introduction: string;
-    receiveOnly: string;
-    carrerFirst: string;
-    carrerSecond: string;
-  };
-}
-
-const Banner: React.FC<BannerI> = ({ userData }) => {
+const Banner: React.FC<BannerInterface> = ({ userData }) => {
   const { banner, profile, username, introduction, receiveOnly, carrerFirst, carrerSecond } = userData;
 
   const TAG_LIST = [carrerFirst, carrerSecond];

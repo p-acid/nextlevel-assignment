@@ -1,16 +1,14 @@
 import type { NextPage } from 'next';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getCookie } from 'cookies-next';
-import useSWR, { SWRResponse } from 'swr';
-import axios from 'axios';
 
-import { getUserData } from '../lib/user';
-import { URI } from '../config';
+import { getListData, getUserData } from '../api/main';
 
 import List from '../components/List/List';
 import Banner from '../components/Banner/Banner';
 import Layout from '../components/Layout/Layout';
 import PageBtns from '../components/PageBtns/PageBtns';
+import { Loading } from '../components/Loading/Loading';
 
 const LIST_INFO = {
   PRODUCTS_LIMIT: 5,
@@ -20,15 +18,21 @@ const LIST_INFO = {
 
 const Main: NextPage = ({ userData }: any) => {
   const [currentStart, setCurrentStart] = useState(0);
-  const { data }: SWRResponse = useSWR(
-    `${URI}/v1/contents?isActive=true&_start=${currentStart}&_limit=${LIST_INFO.PRODUCTS_LIMIT}&_sort=createdAt `,
-    (url: string) => axios.get(url).then(res => res.data),
-  );
+  const [contentList, setContentList] = useState([]);
+
+  useEffect(() => {
+    getListData({ _limit: LIST_INFO.PRODUCTS_LIMIT, _sort: 'createdAt', isActive: true, _start: currentStart }).then(
+      res => {
+        const list: never[] = res.data;
+        setContentList([...list]);
+      },
+    );
+  }, [currentStart]);
 
   return (
     <Layout>
       <Banner userData={userData} />
-      <List contentList={data} />
+      {contentList.length > 0 ? <List contentList={contentList} /> : <Loading />}
       <PageBtns listInfo={LIST_INFO} currentStart={currentStart} setCurrentStart={setCurrentStart} />
     </Layout>
   );

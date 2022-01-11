@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { setCookies } from 'cookies-next';
 
-import { submitUserData } from '../lib/user';
+import { submitUserData } from '../api/main';
 import { Wrapper, SubWrapper, Logo, Title, Form, Button } from '../styles/Signin/SignInStyle';
 
 import InputBox from '../components/InputBox/InputBox';
@@ -35,7 +35,7 @@ const SignIn: NextPage = () => {
   const submitData = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const res = await submitUserData(userData);
+    const res: any = await submitUserData(userData);
 
     if (res.jwt) {
       setCookies('token', res.jwt);

@@ -1,17 +1,7 @@
-import React, { ChangeEventHandler } from 'react';
+import { InputBoxInterface } from '../../interface/interface';
 import { Wrapper, Label, Input } from './InputBoxStyle';
 
-interface Prop {
-  data: {
-    type: string;
-    placeholder: string;
-    title: string;
-  };
-  event: ChangeEventHandler;
-  value: string;
-}
-
-const InputBox: React.FC<Prop> = ({ data, value, event }: Prop) => {
+const InputBox: React.FC<InputBoxInterface> = ({ data, value, event }: InputBoxInterface) => {
   const { type, placeholder, title } = data;
 
   return (

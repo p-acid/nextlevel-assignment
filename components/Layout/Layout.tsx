@@ -1,7 +1,7 @@
 import { getCookie } from 'cookies-next';
 import { useEffect, useState } from 'react';
 
-import { getUserData } from '../../lib/user';
+import { getUserData } from '../../api/main';
 
 import Header from '../Header/Header';
 import { Wrapper, Main } from './LayoutStyle';

@@ -1,17 +1,7 @@
-import { StateUpdateCallback } from 'swr/dist/types';
+import { PageBtnsInterface } from '../../interface/interface';
 import { BtnBox, NextBtn, NumBtnBox, NumBtn } from './PageBtnsStyle';
 
-interface PageBtnsI {
-  listInfo: {
-    PRODUCTS_LIMIT: number;
-    TOTAL_PAGES: number;
-    PAGE_LIST_LIMIT: number;
-  };
-  currentStart: number;
-  setCurrentStart: StateUpdateCallback;
-}
-
-const PageBtns: React.FC<PageBtnsI> = ({ listInfo, currentStart, setCurrentStart }) => {
+const PageBtns: React.FC<PageBtnsInterface> = ({ listInfo, currentStart, setCurrentStart }) => {
   const { PRODUCTS_LIMIT, TOTAL_PAGES, PAGE_LIST_LIMIT } = listInfo;
   const currentPage = Math.floor(currentStart / PRODUCTS_LIMIT) + 1;
   const currentPagesRange = (Math.ceil(currentPage / PAGE_LIST_LIMIT) - 1) * PAGE_LIST_LIMIT;
