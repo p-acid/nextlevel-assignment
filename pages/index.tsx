@@ -31,9 +31,12 @@ const Main: NextPage = ({ userData }: any) => {
   });
 
   useEffect(() => {
-    getListData({ _limit: LIST_INFO.PRODUCTS_LIMIT, _sort: 'createdAt', isActive: true, _start: currentStart }).then(
-      (res: AxiosResponse) => setContentList((): any => [...res.data]),
-    );
+    getListData({
+      _limit: LIST_INFO.PRODUCTS_LIMIT,
+      _sort: 'createdAt:desc',
+      isActive: true,
+      _start: currentStart,
+    }).then((res: AxiosResponse) => setContentList((): any => [...res.data]));
   }, [currentStart]);
 
   return (
