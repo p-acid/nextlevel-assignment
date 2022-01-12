@@ -15,6 +15,12 @@ export const getListData = async (params: object) => {
   return res;
 };
 
+export const getDetailData = async (contentId: string) => {
+  const res = req.get(`${PATH.contentsDetail}/${contentId}`);
+
+  return res;
+};
+
 export const submitUserData = async (userData: object) => {
   const res = req.post(PATH.signIn, userData, {
     headers: {
