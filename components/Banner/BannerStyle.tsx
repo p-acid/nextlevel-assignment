@@ -39,10 +39,14 @@ export const TagBox = styled.ul`
   margin-top: 0.5rem;
 `;
 
-export const Tag = styled.li``;
+export const Tag = styled.li`
+  line-height: 145%;
+`;
 
 export const Discription = styled.p`
   margin-top: 0.5rem;
+  font-size: 14px;
+  line-height: 142%;
 `;
 
 export const Email = styled.div`
