@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { setCookies } from 'cookies-next';
+import { removeCookies, setCookies } from 'cookies-next';
 
 import { submitUserData } from '../api/main';
 import { Wrapper, SubWrapper, Logo, Title, Form, Button } from '../styles/Signin/SignInStyle';
@@ -9,6 +9,8 @@ import { Wrapper, SubWrapper, Logo, Title, Form, Button } from '../styles/Signin
 import InputBox from '../components/InputBox/InputBox';
 
 const SignIn: NextPage = () => {
+  removeCookies('token');
+
   const [userInfo, setUserInfo] = useState({
     id: '',
     password: '',
