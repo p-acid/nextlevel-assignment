@@ -21,10 +21,15 @@ const GlobalStyle = createGlobalStyle`
 
   * { 
     box-sizing: border-box;
+    text-decoration: none;
+  }
+
+  a {
+    color: black;
   }
 
   body {
-    font-family: NotoSansR;
+    font-family: NotoSansB;
   }
 
   input,

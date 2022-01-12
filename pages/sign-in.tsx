@@ -1,13 +1,16 @@
 import { NextPage } from 'next';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { removeCookies, setCookies } from 'cookies-next';
 
-import { submitUserData } from '../lib/user';
+import { submitUserData } from '../api/main';
 import { Wrapper, SubWrapper, Logo, Title, Form, Button } from '../styles/Signin/SignInStyle';
 
 import InputBox from '../components/InputBox/InputBox';
 
-const SignIn: NextPage = props => {
+const SignIn: NextPage = () => {
+  removeCookies('token');
+
   const [userInfo, setUserInfo] = useState({
     id: '',
     password: '',
@@ -34,10 +37,10 @@ const SignIn: NextPage = props => {
   const submitData = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const res = await submitUserData(userData);
+    const res: any = await submitUserData(userData);
 
-    if (res.data.jwt) {
-      localStorage.setItem('token', res.data.jwt);
+    if (res.jwt) {
+      setCookies('token', res.jwt);
       router.push('/');
     } else {
       alert('아이디 비밀번호를 확인해주세요');

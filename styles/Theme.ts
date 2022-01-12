@@ -1,5 +1,8 @@
 const theme = {
-  main: '#00E07E',
+  pr: {
+    main: '#00E07E',
+    dark: '#008857',
+  },
 };
 
 export default theme;
