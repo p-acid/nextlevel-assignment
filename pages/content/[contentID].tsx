@@ -1,5 +1,7 @@
+import { getCookie } from 'cookies-next';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import { getDetailData } from '../../api/main';
 
@@ -19,6 +21,7 @@ const BTN_DATA = ['문의', '구매'];
 
 const Content: NextPage = ({ contentData }: any) => {
   const router = useRouter();
+  const token = getCookie('token');
 
   const {
     images,
@@ -39,6 +42,12 @@ const Content: NextPage = ({ contentData }: any) => {
   const price = Math.min(
     ...[businessPrice, companyPrice, enterprisePrice, individualPrice, personalPrice].filter(price => price !== -1),
   );
+
+  useEffect(() => {
+    if (!token) {
+      router.push('/sign-in');
+    }
+  });
 
   return (
     <FlexWrapper>
