@@ -28,7 +28,7 @@ const Main: NextPage = ({ userData }: any) => {
     if (userData === null) {
       router.push('/sign-in');
     }
-  });
+  }, [userData, router]);
 
   useEffect(() => {
     getListData({

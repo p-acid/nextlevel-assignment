@@ -47,7 +47,7 @@ const Content: NextPage = ({ contentData }: any) => {
     if (!token) {
       router.push('/sign-in');
     }
-  });
+  }, [token, router]);
 
   return (
     <FlexWrapper>
