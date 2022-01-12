@@ -16,11 +16,14 @@ export const ProductImg = styled.div<{ src: Array<{ url: string }> }>`
   background: url(${({ src }) => src[0]?.url});
   background-size: cover;
   background-position: center;
+  cursor: pointer;
 
   &:hover {
-    background: url(${({ src }) => src[1]?.url});
+    ${({ src }) =>
+      src[1] &&
+      `background: url(${src[1].url});
     background-size: cover;
-    background-position: center;
+    background-position: center;`}
   }
 `;
 
