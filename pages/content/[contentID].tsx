@@ -1,16 +1,27 @@
 import { NextPage } from 'next';
-import React from 'react';
-import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import { getDetailData } from '../../api/main';
 
-import { Wrapper, BtnWrapper, Discription } from '../../styles/Content/ContentStyle';
+import { TagBox, Tag } from '../../components/Banner/BannerStyle';
+import { SubInfoBox, Price, UserBox, UserImage, UserName } from '../../components/List/ListItem/ListItemStyle';
+import {
+  FlexWrapper,
+  Wrapper,
+  StatisticData,
+  ProductImg,
+  BtnWrapper,
+  BackBtn,
+} from '../../styles/Content/ContentStyle';
 import { Button } from '../../styles/Signin/SignInStyle';
 
+const BTN_DATA = ['문의', '구매'];
+
 const Content: NextPage = ({ contentData }: any) => {
-  console.log(contentData);
+  const router = useRouter();
 
   const {
+    images,
     businessPrice,
     companyPrice,
     enterprisePrice,
@@ -24,32 +35,43 @@ const Content: NextPage = ({ contentData }: any) => {
     description,
   } = contentData;
 
+  const { username, profile } = userinfo;
   const price = Math.min(
     ...[businessPrice, companyPrice, enterprisePrice, individualPrice, personalPrice].filter(price => price !== -1),
   );
 
   return (
-    <Wrapper style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <span>{price} P</span>
-        <span>
-          <span>{view} 뷰</span>
-          <span>{interest} 찜</span>
-        </span>
-      </div>
-      <h2>{title}</h2>
-      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-        {tags.map((tag: { text: string }) => (
-          <span key={`${tag.text}`}>#{tag.text}</span>
-        ))}
-      </div>
-      <Image src={userinfo.profile.url} alt={'profile_image'} width={16} height={16} />
-      <Discription>{description === null ? 'none' : description}</Discription>
-      <BtnWrapper>
-        <Button>문의하기</Button>
-        <Button>구매하기</Button>
-      </BtnWrapper>
-    </Wrapper>
+    <FlexWrapper>
+      <Wrapper>
+        <ProductImg src={images[0].url} alt="product_image" />
+        <SubInfoBox>
+          <Price>{price.toLocaleString()} P</Price>
+          <StatisticData>
+            <span>{view} 뷰</span>
+            <span>{interest} 찜</span>
+          </StatisticData>
+        </SubInfoBox>
+        <h2>{title}</h2>
+        <TagBox>
+          {tags.map((tag: { text: string }) => (
+            <Tag key={`${tag.text}`}>#{tag.text}</Tag>
+          ))}
+        </TagBox>
+        <UserBox>
+          <UserImage src={profile.url} alt="profile_image" width={16} height={16} />
+          <UserName>{username}</UserName>
+        </UserBox>
+        <p>{description}</p>
+        <BtnWrapper>
+          {BTN_DATA.map(type => (
+            <Button key={type} onClick={() => alert(`${type} 준비중 입니다.`)}>
+              {type}하기
+            </Button>
+          ))}
+        </BtnWrapper>
+      </Wrapper>
+      <BackBtn onClick={() => router.push('/')}>스토어로 돌아가기</BackBtn>
+    </FlexWrapper>
   );
 };
 

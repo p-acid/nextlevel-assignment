@@ -8,7 +8,7 @@ import { getListData, getUserData } from '../api/main';
 
 import List from '../components/List/List';
 import Banner from '../components/Banner/Banner';
-import Layout from '../components/Layout/Layout';
+
 import PageBtns from '../components/PageBtns/PageBtns';
 import { Loading } from '../components/Loading/Loading';
 
@@ -42,11 +42,11 @@ const Main: NextPage = ({ userData }: any) => {
   return (
     <>
       {userData && (
-        <Layout>
+        <>
           <Banner userData={userData} />
           {contentList.length > 0 ? <List contentList={contentList} /> : <Loading />}
           <PageBtns listInfo={LIST_INFO} currentStart={currentStart} setCurrentStart={setCurrentStart} />
-        </Layout>
+        </>
       )}
     </>
   );
