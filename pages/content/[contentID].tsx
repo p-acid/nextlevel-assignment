@@ -11,7 +11,7 @@ import {
   FlexWrapper,
   Wrapper,
   StatisticData,
-  ProductImg,
+  ProductImage,
   BtnWrapper,
   BackBtn,
 } from '../../styles/Content/ContentStyle';
@@ -52,7 +52,7 @@ const Content: NextPage = ({ contentData }: any) => {
   return (
     <FlexWrapper>
       <Wrapper>
-        <ProductImg src={images[0].url} alt="product_image" />
+        <ProductImage src={images[0].url} alt="product_image" />
         <SubInfoBox>
           <Price>{price.toLocaleString()} P</Price>
           <StatisticData>
@@ -87,9 +87,9 @@ const Content: NextPage = ({ contentData }: any) => {
 export default Content;
 
 export const getServerSideProps = async (ctx: any) => {
-  const contentID = ctx.query.contentID;
+  const contentId = ctx.query.contentId;
 
-  const contentData = await getDetailData(contentID);
+  const contentData = await getDetailData(contentId);
 
   return { props: { contentData: contentData.data } };
 };

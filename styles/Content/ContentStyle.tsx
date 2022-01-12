@@ -28,8 +28,11 @@ export const StatisticData = styled.div`
   color: rgba(0, 0, 0, 0.5);
 `;
 
-export const ProductImg = styled.img`
+export const ProductImage = styled.img`
+  width: 30rem;
+  height: 20rem;
   border-radius: 1rem;
+  object-fit: cover;
 `;
 
 export const BtnWrapper = styled.div`
