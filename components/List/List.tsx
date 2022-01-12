@@ -7,7 +7,7 @@ const List: React.FC<ListInterface> = ({ contentList }: ListInterface) => {
   return (
     <Wrapper>
       {contentList?.map((content: any) => (
-        <ListItem key={content._id} content={content} />
+        <ListItem key={`${content._id}_content_id`} content={content} />
       ))}
     </Wrapper>
   );

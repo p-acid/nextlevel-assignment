@@ -15,7 +15,7 @@ const Banner: React.FC<BannerInterface> = ({ userData }) => {
         <UserName>{username}</UserName>
         <TagBox>
           {TAG_LIST.map((tagName, idx) => (
-            <Tag key={idx}>#{tagName}</Tag>
+            <Tag key={`${idx}_tag`}>#{tagName}</Tag>
           ))}
         </TagBox>
         <Discription>{introduction}</Discription>

@@ -21,7 +21,7 @@ const PageBtns: React.FC<PageBtnsInterface> = ({ listInfo, currentStart, setCurr
           .map((item, idx) => {
             return (
               <NumBtn
-                key={idx}
+                key={`${idx}_Num_Btn`}
                 isCurrentPage={currentPage === item + idx + 1}
                 onClick={() => setCurrentStart((item + idx) * PRODUCTS_LIMIT)}
               >
