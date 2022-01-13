@@ -1,7 +1,10 @@
+import { useRouter } from 'next/router';
 import { ListItemInterface } from '../../../interface/interface';
-import { Item, ProductImg, InfoBox, Title, UserBox, UserImage, UserName, SubInfoBox, Price } from './ListItemStyle';
+import { Item, ProductImage, InfoBox, Title, UserBox, UserImage, UserName, SubInfoBox, Price } from './ListItemStyle';
 
 const ListItem: React.FC<ListItemInterface> = ({ content }) => {
+  const router = useRouter();
+
   const {
     _id,
     images,
@@ -22,7 +25,7 @@ const ListItem: React.FC<ListItemInterface> = ({ content }) => {
   );
   return (
     <Item>
-      <ProductImg src={images} />
+      <ProductImage onClick={() => router.push(`/content/${_id}`)} src={images} />
       <InfoBox>
         <Title href={`/content/${_id}`}>{title}</Title>
         <UserBox>

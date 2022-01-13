@@ -8,7 +8,7 @@ export const Item = styled.li`
   border-radius: 8px;
 `;
 
-export const ProductImg = styled.div<{ src: Array<{ url: string }> }>`
+export const ProductImage = styled.div<{ src: Array<{ url: string }> }>`
   min-width: 254px;
   min-height: 132px;
   border-top-left-radius: 8px;
