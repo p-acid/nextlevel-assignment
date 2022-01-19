@@ -6,12 +6,17 @@ import { Wrapper, SubWrapper, Profile, UserName, TagBox, Tag, Discription, Email
 const Banner: React.FC<BannerInterface> = ({ userData }) => {
   const { banner, profile, username, introduction, receiveOnly, carrerFirst, carrerSecond } = userData;
 
-  const TAG_LIST = [carrerFirst, carrerSecond];
+  const TAG_LIST = [carrerFirst, carrerSecond].filter(tag => typeof tag !== 'undefined');
 
   return (
-    <Wrapper banner={banner?.url}>
+    <Wrapper banner={banner?.url || '/images/banner/no-data-user-background.jpg'}>
       <SubWrapper>
-        <Profile src={profile?.url} alt="profile_img" width={80} height={80} />
+        <Profile
+          src={profile?.url || '/images/banner/no-data-user-profile.png'}
+          alt="profile_img"
+          width={80}
+          height={80}
+        />
         <UserName>{username}</UserName>
         <TagBox>
           {TAG_LIST.map((tagName, idx) => (

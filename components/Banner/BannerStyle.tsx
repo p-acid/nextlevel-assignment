@@ -5,6 +5,7 @@ export const Wrapper = styled.div<{ banner: string }>`
   justify-content: center;
   height: 20rem;
   background: linear-gradient(180deg, rgba(18, 18, 18, 0) 42.81%, #121212 100%), url(${({ banner }) => banner});
+  background-size: cover;
   background-position: center;
 `;
 
