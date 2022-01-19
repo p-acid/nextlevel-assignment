@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ThemeProvider } from 'styled-components';
 import { getCookie } from 'cookies-next';
+import { Provider } from 'react-redux';
 
 import { getUserData } from '../api/main';
+import { store } from '../redux/store';
 
+import Head from 'next/head';
 import GlobalStyle from '../styles/GlobalStyle';
 import Theme from '../styles/Theme';
 import Header from '../components/Header/Header';
@@ -33,8 +35,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={Theme}>
-        {router.pathname !== '/sign-in' && <Header>{userName}</Header>}
-        <Component {...pageProps} />
+        <Provider store={store}>
+          {router.pathname !== '/sign-in' && <Header>{userName}</Header>}
+          <Component {...pageProps} />
+        </Provider>
       </ThemeProvider>
     </>
   );

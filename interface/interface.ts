@@ -24,7 +24,6 @@ export interface PageBtnsInterface {
     PAGE_LIST_LIMIT: number;
   };
   currentStart: number;
-  setCurrentStart: StateUpdateCallback;
 }
 
 export interface ListInterface {
