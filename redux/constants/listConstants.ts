@@ -11,3 +11,7 @@ export const LIST_INFO = {
   TOTAL_PAGES: 20,
   PAGE_LIST_LIMIT: 6,
 };
+
+export const INITIAL_STATES = {
+  CURRENT_START: 0,
+};

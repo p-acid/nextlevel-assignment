@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { BtnBox, NextBtn, NumBtnBox, NumBtn } from './PageBtnsStyle';
 
+import { getList } from '../../redux/actions/listActions';
 import { store } from '../../redux/store';
 import { ADD_CURRENT, MINUS_CURRENT, CHOICE_CURRENT } from '../../redux/constants/listConstants';
 import { LIST_INFO } from '../../redux/constants/listConstants';
@@ -13,6 +15,10 @@ const PageBtns: React.FC = () => {
 
   const currentPage = Math.floor(currentStart / PRODUCTS_LIMIT) + 1;
   const currentPagesRange = (Math.ceil(currentPage / PAGE_LIST_LIMIT) - 1) * PAGE_LIST_LIMIT;
+
+  useEffect(() => {
+    store.dispatch(getList(store.getState().currentStart));
+  }, [currentStart]);
 
   return (
     <BtnBox>

@@ -1,5 +1,4 @@
 import { ChangeEventHandler } from 'react';
-import { StateUpdateCallback } from 'swr/dist/types';
 
 interface Url {
   url: string;
