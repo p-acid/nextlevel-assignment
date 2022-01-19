@@ -1,10 +1,10 @@
 import { Wrapper } from './ListStyle';
 
 import ListItem from './ListItem/ListItem';
-import { ListInterface } from '../../interface/interface';
+
 import { useSelector } from 'react-redux';
 
-const List: React.FC<ListInterface> = () => {
+const List: React.FC = () => {
   const { list }: any = useSelector(state => state);
 
   return (

@@ -1,13 +1,12 @@
 import { useSelector } from 'react-redux';
 
-import { PageBtnsInterface } from '../../interface/interface';
 import { BtnBox, NextBtn, NumBtnBox, NumBtn } from './PageBtnsStyle';
 
 import { store } from '../../redux/store';
 import { ADD_CURRENT, MINUS_CURRENT, CHOICE_CURRENT } from '../../redux/constants/listConstants';
 import { LIST_INFO } from '../../redux/constants/listConstants';
 
-const PageBtns: React.FC<PageBtnsInterface> = () => {
+const PageBtns: React.FC = () => {
   const { currentStart }: any = useSelector(state => state);
 
   const { PRODUCTS_LIMIT, TOTAL_PAGES, PAGE_LIST_LIMIT } = LIST_INFO;

@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import { store } from '../redux/store';
 import { getUserData } from '../api/main';
 import { getList } from '../redux/actions/listActions';
-import { LIST_INFO } from '../redux/constants/listConstants';
 
 import List from '../components/List/List';
 import Banner from '../components/Banner/Banner';
@@ -34,8 +33,8 @@ const Main: NextPage = ({ userData }: any) => {
       {userData && (
         <>
           <Banner userData={userData} />
-          {list.length > 0 ? <List contentList={list} /> : <Loading />}
-          <PageBtns listInfo={LIST_INFO} currentStart={currentStart} />
+          {list.length > 0 ? <List /> : <Loading />}
+          <PageBtns />
         </>
       )}
     </>

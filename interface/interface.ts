@@ -17,19 +17,6 @@ export interface BannerInterface {
   };
 }
 
-export interface PageBtnsInterface {
-  listInfo: {
-    PRODUCTS_LIMIT: number;
-    TOTAL_PAGES: number;
-    PAGE_LIST_LIMIT: number;
-  };
-  currentStart: number;
-}
-
-export interface ListInterface {
-  contentList: object[];
-}
-
 export interface ListItemInterface {
   content: {
     _id: string;
