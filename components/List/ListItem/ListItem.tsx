@@ -30,7 +30,7 @@ const ListItem: React.FC<ListItemInterface> = ({ content }) => {
         <Title href={`/content/${_id}`}>{title}</Title>
         <UserBox>
           <UserImage
-            src={profile?.url || '/images/banner/no-data-user-profile.png'}
+            src={profile?.url ?? '/images/banner/no-data-user-profile.png'}
             width={16}
             height={16}
             alt="profile_img"
