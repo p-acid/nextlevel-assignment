@@ -1,6 +1,7 @@
 import { LIST_INFO } from '../constants/listConstants';
 import { getListData } from '../../api/main';
 
+import { SystemError } from '../../interface/interface';
 import { LIST_SUCCESS, LIST_FAIL, CLEAR_ERRORS } from '../constants/listConstants';
 
 export const getList = (start: any) => async (dispatch: any) => {
@@ -13,8 +14,9 @@ export const getList = (start: any) => async (dispatch: any) => {
     });
 
     dispatch({ type: LIST_SUCCESS, payload: data });
-  } catch (error: unknown) {
-    dispatch({ type: LIST_FAIL, payload: error.response.data.message });
+  } catch (error) {
+    const err = error as SystemError;
+    dispatch({ type: LIST_FAIL, payload: err.response.data.message });
   }
 };
 
