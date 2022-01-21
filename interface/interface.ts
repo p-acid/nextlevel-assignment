@@ -61,3 +61,11 @@ export interface InputBoxInterface {
   event: ChangeEventHandler;
   value: string;
 }
+
+export interface SystemError {
+  response: {
+    data: {
+      message: string;
+    };
+  };
+}
