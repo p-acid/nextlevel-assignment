@@ -1,26 +1,18 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-
 import { BtnBox, NextBtn, NumBtnBox, NumBtn } from './PageBtnsStyle';
 
-import { getList } from '../../redux/actions/listActions';
-import { store } from '../../redux/store';
-import { ADD_CURRENT, MINUS_CURRENT, CHOICE_CURRENT } from '../../redux/constants/listConstants';
-import { LIST_INFO } from '../../redux/constants/listConstants';
+import { LIST_INFO } from '../../public/constants/constants';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+
+import { next, before, picked } from '../../feature/currentStart/currentStartSlice';
 
 const PageBtns: React.FC = () => {
-  const { currentStart }: any = useSelector(state => state);
-
-  console.log(currentStart);
+  const currentStart = useAppSelector(state => state.currentStart.value);
+  const dispatch = useAppDispatch();
 
   const { PRODUCTS_LIMIT, TOTAL_PAGES, PAGE_LIST_LIMIT } = LIST_INFO;
 
   const currentPage = Math.floor(currentStart / PRODUCTS_LIMIT) + 1;
   const currentPagesRange = (Math.ceil(currentPage / PAGE_LIST_LIMIT) - 1) * PAGE_LIST_LIMIT;
-
-  useEffect(() => {
-    store.dispatch(getList(store.getState().currentStart));
-  }, [currentStart]);
 
   return (
     <BtnBox>
@@ -29,7 +21,7 @@ const PageBtns: React.FC = () => {
           src="/images/before.png"
           alt="before.png"
           onClick={() => {
-            store.dispatch({ type: 'currentStart/before' });
+            dispatch(before());
           }}
         />
       )}
@@ -42,7 +34,7 @@ const PageBtns: React.FC = () => {
                 key={`${idx}_Num_Btn`}
                 isCurrentPage={currentPage === item + idx + 1}
                 onClick={() => {
-                  store.dispatch({ type: CHOICE_CURRENT, payload: item + idx });
+                  dispatch(picked(item + idx));
                 }}
               >
                 {item + idx + 1}
@@ -55,7 +47,7 @@ const PageBtns: React.FC = () => {
           src="/images/next.png"
           alt="next.png"
           onClick={() => {
-            store.dispatch({ type: 'currentStart/next' });
+            dispatch(next());
           }}
         />
       )}
