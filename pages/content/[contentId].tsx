@@ -39,9 +39,12 @@ const Content: NextPage = ({ contentData }: any) => {
   } = contentData;
 
   const { username, profile } = userinfo;
-  const price = Math.min(
-    ...[businessPrice, companyPrice, enterprisePrice, individualPrice, personalPrice].filter(price => price !== -1),
-  );
+  const price =
+    Math.min(
+      ...[businessPrice, companyPrice, enterprisePrice, individualPrice, personalPrice].filter(
+        price => price !== -1 && price !== undefined,
+      ),
+    ) || 0;
 
   useEffect(() => {
     if (!token) {
@@ -67,7 +70,12 @@ const Content: NextPage = ({ contentData }: any) => {
           ))}
         </TagBox>
         <UserBox>
-          <UserImage src={profile.url} alt="profile_image" width={16} height={16} />
+          <UserImage
+            src={profile?.url ?? '/images/banner/no-data-user-profile.png'}
+            alt="profile_image"
+            width={16}
+            height={16}
+          />
           <UserName>{username}</UserName>
         </UserBox>
         <p>{description}</p>

@@ -51,3 +51,11 @@ export interface InputBoxInterface {
 export interface CurrentStartInterface {
   value: number;
 }
+
+export interface SystemError {
+  response: {
+    data: {
+      message: string;
+    };
+  };
+}

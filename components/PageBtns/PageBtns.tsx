@@ -42,7 +42,7 @@ const PageBtns: React.FC = () => {
             );
           })}
       </NumBtnBox>
-      {currentPagesRange + PAGE_LIST_LIMIT !== TOTAL_PAGES && (
+      {currentPagesRange + PAGE_LIST_LIMIT < TOTAL_PAGES && (
         <NextBtn
           src="/images/next.png"
           alt="next.png"
