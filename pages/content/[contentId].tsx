@@ -42,7 +42,7 @@ const Content: NextPage = ({ contentData }: any) => {
   const price =
     Math.min(
       ...[businessPrice, companyPrice, enterprisePrice, individualPrice, personalPrice].filter(
-        price => price !== -1 && price !== undefined,
+        price => price ?? price !== -1,
       ),
     ) || 0;
 
@@ -71,7 +71,7 @@ const Content: NextPage = ({ contentData }: any) => {
         </TagBox>
         <UserBox>
           <UserImage
-            src={profile?.url || '/images/banner/no-data-user-profile.png'}
+            src={profile?.url ?? '/images/banner/no-data-user-profile.png'}
             alt="profile_image"
             width={16}
             height={16}

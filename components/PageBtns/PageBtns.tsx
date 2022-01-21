@@ -15,8 +15,6 @@ const PageBtns: React.FC<PageBtnsInterface> = () => {
   const currentPage = Math.floor(currentStart / PRODUCTS_LIMIT) + 1;
   const currentPagesRange = (Math.ceil(currentPage / PAGE_LIST_LIMIT) - 1) * PAGE_LIST_LIMIT;
 
-  console.log();
-
   return (
     <BtnBox>
       {currentPagesRange > 0 && (
