@@ -13,7 +13,7 @@ const List: React.FC = () => {
       {list.length > 0 ? (
         <Wrapper>
           {list?.map((content: any) => (
-            <ListItem key={`${content._id}_content_id`} content={content} />
+            <ListItem key={content._id} content={content} />
           ))}
         </Wrapper>
       ) : (
