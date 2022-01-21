@@ -11,6 +11,8 @@ import { LIST_INFO } from '../../redux/constants/listConstants';
 const PageBtns: React.FC = () => {
   const { currentStart }: any = useSelector(state => state);
 
+  console.log(currentStart);
+
   const { PRODUCTS_LIMIT, TOTAL_PAGES, PAGE_LIST_LIMIT } = LIST_INFO;
 
   const currentPage = Math.floor(currentStart / PRODUCTS_LIMIT) + 1;
@@ -27,7 +29,7 @@ const PageBtns: React.FC = () => {
           src="/images/before.png"
           alt="before.png"
           onClick={() => {
-            store.dispatch({ type: MINUS_CURRENT });
+            store.dispatch({ type: 'currentStart/before' });
           }}
         />
       )}
@@ -53,7 +55,7 @@ const PageBtns: React.FC = () => {
           src="/images/next.png"
           alt="next.png"
           onClick={() => {
-            store.dispatch({ type: ADD_CURRENT });
+            store.dispatch({ type: 'currentStart/next' });
           }}
         />
       )}

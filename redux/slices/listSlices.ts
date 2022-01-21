@@ -12,7 +12,7 @@ const currentStartSlice = createSlice({
   name: 'currentStart',
   initialState: INITIAL_STATES.CURRENT_START,
   reducers: {
-    next(state, action) {
+    next(state) {
       (currentPagesRange(state) + PAGE_LIST_LIMIT) * PRODUCTS_LIMIT;
     },
     before(state) {

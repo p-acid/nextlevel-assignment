@@ -14,7 +14,7 @@ export const getList = (start: any) => async (dispatch: any) => {
 
     dispatch({ type: LIST_SUCCESS, payload: data });
   } catch (error: unknown) {
-    dispatch({ type: LIST_FAIL, payload: error.response.data.message });
+    dispatch({ type: LIST_FAIL, payload: error });
   }
 };
 
