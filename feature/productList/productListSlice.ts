@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ListItemInterface } from '../../interface/interface';
-import { URL, PATH } from '../../api/core';
+import { URL, PATH } from '../../api/core/index';
 
 type fetchResponse = ListItemInterface[];
 

@@ -21,7 +21,7 @@ const PageBtns: React.FC = () => {
           src="/images/before.png"
           alt="before.png"
           onClick={() => {
-            dispatch(before());
+            dispatch(before(currentPagesRange));
           }}
         />
       )}
@@ -47,7 +47,7 @@ const PageBtns: React.FC = () => {
           src="/images/next.png"
           alt="next.png"
           onClick={() => {
-            dispatch(next());
+            dispatch(next(currentPagesRange));
           }}
         />
       )}
