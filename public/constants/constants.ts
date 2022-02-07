@@ -1,0 +1,5 @@
+export const LIST_INFO = {
+  PRODUCTS_LIMIT: 5,
+  TOTAL_PAGES: 20,
+  PAGE_LIST_LIMIT: 5,
+};

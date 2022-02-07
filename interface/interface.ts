@@ -1,5 +1,4 @@
 import { ChangeEventHandler } from 'react';
-import { StateUpdateCallback } from 'swr/dist/types';
 
 interface Url {
   url: string;
@@ -15,19 +14,6 @@ export interface BannerInterface {
     carrerFirst: string;
     carrerSecond: string;
   };
-}
-
-export interface PageBtnsInterface {
-  listInfo: {
-    PRODUCTS_LIMIT: number;
-    TOTAL_PAGES: number;
-    PAGE_LIST_LIMIT: number;
-  };
-  currentStart: number;
-}
-
-export interface ListInterface {
-  contentList: object[];
 }
 
 export interface ListItemInterface {
@@ -60,6 +46,10 @@ export interface InputBoxInterface {
   };
   event: ChangeEventHandler;
   value: string;
+}
+
+export interface CurrentStartInterface {
+  value: number;
 }
 
 export interface SystemError {

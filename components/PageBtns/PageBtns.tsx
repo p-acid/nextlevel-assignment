@@ -1,14 +1,13 @@
-import { useSelector } from 'react-redux';
-
-import { PageBtnsInterface } from '../../interface/interface';
 import { BtnBox, NextBtn, NumBtnBox, NumBtn } from './PageBtnsStyle';
 
-import { store } from '../../redux/store';
-import { ADD_CURRENT, MINUS_CURRENT, CHOICE_CURRENT } from '../../redux/constants/listConstants';
-import { LIST_INFO } from '../../redux/constants/listConstants';
+import { LIST_INFO } from '../../public/constants/constants';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-const PageBtns: React.FC<PageBtnsInterface> = () => {
-  const { currentStart }: any = useSelector(state => state);
+import { next, before, picked } from '../../feature/currentStart/currentStartSlice';
+
+const PageBtns: React.FC = () => {
+  const currentStart = useAppSelector(state => state.currentStart.value);
+  const dispatch = useAppDispatch();
 
   const { PRODUCTS_LIMIT, TOTAL_PAGES, PAGE_LIST_LIMIT } = LIST_INFO;
 
@@ -22,7 +21,7 @@ const PageBtns: React.FC<PageBtnsInterface> = () => {
           src="/images/before.png"
           alt="before.png"
           onClick={() => {
-            store.dispatch({ type: MINUS_CURRENT });
+            dispatch(before(currentPagesRange));
           }}
         />
       )}
@@ -35,7 +34,7 @@ const PageBtns: React.FC<PageBtnsInterface> = () => {
                 key={`${idx}_Num_Btn`}
                 isCurrentPage={currentPage === item + idx + 1}
                 onClick={() => {
-                  store.dispatch({ type: CHOICE_CURRENT, payload: item + idx });
+                  dispatch(picked(item + idx));
                 }}
               >
                 {item + idx + 1}
@@ -48,7 +47,7 @@ const PageBtns: React.FC<PageBtnsInterface> = () => {
           src="/images/next.png"
           alt="next.png"
           onClick={() => {
-            store.dispatch({ type: ADD_CURRENT });
+            dispatch(next(currentPagesRange));
           }}
         />
       )}

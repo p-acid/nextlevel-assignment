@@ -8,23 +8,22 @@ export const Item = styled.li`
   border-radius: 8px;
 `;
 
-export const ProductImage = styled.div<{ src: Array<{ url: string }> }>`
+export const ProductImage = styled.div<{ src: string; isSub: boolean }>`
+  position: ${({ isSub }) => isSub && 'absolute'};
   min-width: 254px;
   min-height: 132px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
-  background: url(${({ src }) => src[0]?.url});
+  background: url(${({ src }) => src});
   background-size: cover;
   background-position: center;
+  opacity: ${({ isSub }) => (isSub ? 0 : 1)};
   cursor: pointer;
+  z-index: ${({ isSub }) => isSub && 1000};
+  transition: 0.3s;
 
   &:hover {
-    ${({ src }) =>
-      src[1] &&
-      `background: url(${src[1].url});
-    background-size: cover;
-    background-position: center;`}
-  }
+    opacity: ${({ isSub }) => isSub && 1};
 `;
 
 export const InfoBox = styled.div`

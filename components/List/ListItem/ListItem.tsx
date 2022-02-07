@@ -25,7 +25,8 @@ const ListItem: React.FC<ListItemInterface> = ({ content }) => {
   );
   return (
     <Item>
-      <ProductImage onClick={() => router.push(`/content/${_id}`)} src={images} />
+      <ProductImage onClick={() => router.push(`/content/${_id}`)} isSub={false} src={images[0].url} />
+      {images[1] && <ProductImage onClick={() => router.push(`/content/${_id}`)} isSub={true} src={images[1].url} />}
       <InfoBox>
         <Title href={`/content/${_id}`}>{title}</Title>
         <UserBox>

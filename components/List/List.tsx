@@ -1,20 +1,27 @@
 import { Wrapper } from './ListStyle';
 
-import ListItem from './ListItem/ListItem';
-import { ListInterface } from '../../interface/interface';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../app/hooks';
+import { useFetchProductListQuery } from '../../feature/productList/productListSlice';
 
-const List: React.FC<ListInterface> = () => {
-  const { list }: any = useSelector(state => state);
+import { Loading } from '../../components/Loading/Loading';
+import ListItem from './ListItem/ListItem';
+
+const List: React.FC = () => {
+  const currentStart = useAppSelector(state => state.currentStart.value);
+  const { data = [], isLoading }: any = useFetchProductListQuery(currentStart);
 
   return (
-    <div>
-      <Wrapper>
-        {list?.map((content: any) => (
-          <ListItem key={`${content._id}_content_id`} content={content} />
-        ))}
-      </Wrapper>
-    </div>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Wrapper>
+          {data.data?.map((content: any) => (
+            <ListItem key={content._id} content={content} />
+          ))}
+        </Wrapper>
+      )}
+    </>
   );
 };
 

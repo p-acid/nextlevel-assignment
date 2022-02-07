@@ -42,7 +42,7 @@ const Content: NextPage = ({ contentData }: any) => {
   const price =
     Math.min(
       ...[businessPrice, companyPrice, enterprisePrice, individualPrice, personalPrice].filter(
-        price => price ?? price !== -1,
+        price => price !== -1 && price !== undefined,
       ),
     ) || 0;
 

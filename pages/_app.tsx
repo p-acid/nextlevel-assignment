@@ -6,7 +6,7 @@ import { getCookie } from 'cookies-next';
 import { Provider } from 'react-redux';
 
 import { getUserData } from '../api/main';
-import { store } from '../redux/store';
+import { store } from '../app/store';
 
 import Head from 'next/head';
 import GlobalStyle from '../styles/GlobalStyle';
